@@ -1,0 +1,420 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary: #600000;    /* Deep Maroon */
+    --primary-dark: #4a0000; /* Darker Maroon for Footer */
+    --secondary: #fdfbf7;  /* Cream/Off-White */
+    --accent: #d4af37;     /* Gold */
+    --text: #333333;       /* Charcoal */
+    --white: #ffffff;
+    --transition: all 0.3s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--secondary);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scroll on mobile */
+}
+
+/* Typography Defaults */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* =========================================
+   2. REUSABLE CLASSES & SECTIONS
+   ========================================= */
+
+/* General Section Padding */
+.section {
+    padding: 80px 5%;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- Section Color Themes --- */
+
+/* Light Theme (Cream Background) */
+.section-light {
+    background-color: var(--secondary);
+    color: var(--text);
+}
+
+/* Dark Theme (Maroon Background) */
+.section-dark {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* Adjust headings for Dark Sections */
+.section-dark h2, 
+.section-dark h3 {
+    color: var(--accent); /* Gold Headings */
+}
+
+/* Section Title Styling */
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    display: block; /* Ensure centering works */
+}
+
+/* Gold Underline for Titles */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    margin: 10px auto 0;
+}
+
+/* Buttons */
+.btn-main {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--primary);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    transition: var(--transition);
+    border: 2px solid var(--primary);
+    font-weight: 600;
+}
+
+.btn-main:hover {
+    background-color: transparent;
+    color: var(--primary);
+}
+
+/* Button override for Dark Sections */
+.section-dark .btn-main {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--primary);
+}
+
+.section-dark .btn-main:hover {
+    background-color: transparent;
+    color: var(--accent);
+}
+
+/* =========================================
+   3. NAVIGATION
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+/* Add this to your Navigation section in CSS */
+.nav-links a.active {
+    color: var(--accent); /* Changes text to Gold */
+    font-weight: 700;
+    border-bottom: 2px solid var(--accent); /* Adds a gold underline */
+    padding-bottom: 5px;
+}
+.logo a{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-family: 'Playfair Display', serif;
+    text-decoration: none;
+}
+.logo a .highlight {
+    color: var(--accent);
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Burger Menu Styles */
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary);
+    margin: 5px;
+    transition: var(--transition);
+}
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Soft Gradient Background */
+    background: linear-gradient(135deg, #ffffff 0%, #f3e6e6 100%);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+}
+
+/* =========================================
+   5. ABOUT SECTION (Light)
+   ========================================= */
+.about-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+
+.about-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    
+    /* Prepare for 3D effect */
+    transition: all 0.5s ease; 
+}
+
+.about-img:hover {
+    /* 1. Scales up slightly (1.05) */
+    /* 2. Rotates slightly on Y and X axis for 3D look */
+    transform: scale(1.05) perspective(1000px) rotateY(10deg) rotateX(5deg);
+    
+    /* 3. Shadow moves to the left to match the tilt */
+    box-shadow: -15px 15px 30px rgba(0,0,0,0.25);
+}
+
+.text-container {
+    max-width: 500px;
+}
+
+/* =========================================
+   6. SKILLS SECTION (Dark)
+   ========================================= */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+/* Glassmorphism Cards for Dark Background */
+.skill-card {
+    background: rgba(255, 255, 255, 0.1); /* See-through */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: var(--white);
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 3px solid var(--accent); /* Gold Accent */
+    transition: var(--transition);
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   7. SERVICES SECTION (Light)
+   ========================================= */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Maroon Cards on Cream Background */
+.service-card {
+    background: var(--primary);
+    color: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    transition: var(--transition);
+    border: 1px solid var(--primary);
+    text-align: center;
+}
+
+.service-card h3 {
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+/* Hover Effect: Flip Colors */
+.service-card:hover {
+    transform: translateY(-10px);
+    background: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.service-card:hover h3 {
+    color: var(--primary);
+}
+
+/* =========================================
+   8. CONTACT SECTION (Dark)
+   ========================================= */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    width: 100%;
+    outline: none;
+   
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--primary-dark);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    
+}
+
+/* =========================================
+   10. ANIMATIONS (JS Compatible)
+   ========================================= */
+
+/* Fade In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* The class JS adds when element is on screen */
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Burger Menu Animation Classes */
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .line2 {
+    opacity: 0;
+}
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* =========================================
+   11. MOBILE RESPONSIVENESS
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Fonts */
+    .hero h1 { font-size: 2.5rem; }
+    .section-title { font-size: 2rem; }
+
+    /* Nav - Slide in from right */
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 92vh; /* Height below navbar */
+        top: 8vh;     /* Navbar height roughly */
+        background-color: var(--secondary);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        padding-top: 50px;
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+        opacity: 1; /* Ensure visible */
+    }
+
+    /* Class JS adds to show menu */
+    .nav-active {
+        transform: translateX(0%);
+    }
+
+    .burger {
+        display: block;
+    }
+
+    /* Stack About Section */
+    .about-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+}
